@@ -35,4 +35,43 @@ const postRequest = (newOrder) => {
 
 };
 
-export default { getRequest, postRequest };
+const deleteRequest = (orderId) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${constants.firebaseConfig.databaseURL}/orders/${orderId}.json`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+const getSingleRequest = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${constants.firebaseConfig.databaseURL}/orders/${id}.json`)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
+const putRequest = (orderId, updatedOrder) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`${constants.firebaseConfig.databaseURL}/orders/${orderId}.json`, updatedOrder)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+export default { getRequest, postRequest, deleteRequest, getSingleRequest, putRequest };
