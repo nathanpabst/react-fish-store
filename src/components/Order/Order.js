@@ -5,7 +5,6 @@ import formatPrice from '../../helpers';
 import './Order.css';
 
 class Order extends React.Component {
-
   saveOrder = () => {
     this.props.saveNewOrder();
   };
